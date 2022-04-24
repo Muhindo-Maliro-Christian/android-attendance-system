@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Attendance System</string>
+    <string name="title_home">Accueil</string>
+    <string name="title_employees">Employés</string>
+    <string name="text_attendance">Enregistrez-vous ou scannez votre face pour signaler votre présence du jour.</string>
+    <string name="add_attendance">Ajouter une présence</string>
+    <string name="enroll_employee">Enroller un employé</string>
+    <string name="text_attendance_camera">Prenez une photo de l\'employée</string>
+    <string name="take_picture">Capturer</string>
+    <string name="text_attendance_camera_description">L\'image de votre face doit être claire pour une bonne expérience de nos algorithmes</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cancel">Annuler</string>
+    <string name="publish">Envoyer</string>
+    <string name="loading">Veuillez patienter</string>
+</resources>
