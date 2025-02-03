@@ -77,6 +77,8 @@ class EmployeeFragment : Fragment(), RecyclerViewAdapter.RowClickListener {
             }
         }
 
+        getEmployees()
+
         swipeRefreshLayout = view.findViewById(R.id.swiperefreshlayout)
         swipeRefreshLayout.setOnRefreshListener {
             getEmployees()
@@ -105,22 +107,28 @@ class EmployeeFragment : Fragment(), RecyclerViewAdapter.RowClickListener {
 
         val queue = Volley.newRequestQueue(context)
         val app =  App()
+        Log.i("get", "${app.url}/employees")
+
         val getRequest: StringRequest = object : StringRequest(
-            Method.GET, "${app.url}//employees",
+            Method.GET, "${app.url}/employees",
             Response.Listener { response -> // response
                 val gson = Gson()
 
                 employeesList = gson.fromJson(response, object : TypeToken<List<Employee>>() {}.type)
                 employeesList.forEach {
-                    val blog = Employee(it.id, it.name)
+                    val blog = Employee(it.id, it.name, it.sexe, it.adresse, it.promotion, it.annee_academique)
                     employeeViewModel.insert(blog)
                 }
+                Log.i("get", employeesList.toString())
+
                 swipeRefreshLayout.setRefreshing(false);
 
             },
             Response.ErrorListener { response -> // TODO Auto-generated method stub
                 val strResponse = String(response.networkResponse?.data ?: ByteArray(0), Charset.forName(
                     HttpHeaderParser.parseCharset(response.networkResponse?.headers)))
+                Log.i("get", strResponse)
+
                 if(strResponse.isEmpty()){
                     Toast.makeText(context, "Error", Toast.LENGTH_LONG).show()
                 }else{

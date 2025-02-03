@@ -1,7 +1,7 @@
 package com.example.attendancesystem.utils.config
 
 class App {
-    var url: String = "http://192.168.1.100:5000"
+    var url: String = "http://192.168.243.111:5500"
         get() {
             return field
         }

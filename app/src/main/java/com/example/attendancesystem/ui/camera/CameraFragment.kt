@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.util.Size
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -262,7 +263,7 @@ class CameraFragment : Fragment() {
             Method.POST,
             "${app.url}/enroll/${id}",
             Response.Listener {
-                Toast.makeText(context,"L'employé est inscrit avec succès", Toast.LENGTH_LONG).show()
+                Toast.makeText(context,"L'etudiant est inscrit avec succès", Toast.LENGTH_LONG).show()
                 loadingDialog.dismiss()
             },
             Response.ErrorListener {
@@ -292,10 +293,44 @@ class CameraFragment : Fragment() {
         val request = object : VolleyFileUploadRequest(
             Method.POST,
             "${app.url}/check",
-            Response.Listener {
-                Toast.makeText(context,"La présence a été enregistrée", Toast.LENGTH_LONG).show()
-                loadingDialog.dismiss()
-            },
+        Response.Listener {response ->
+                val responseData = String(response.data, Charset.forName("UTF-8"))
+                val jsonResponse = JSONObject(responseData)
+
+
+            // Récupération et personnalisation des données JSON
+            val name = jsonResponse.optString("name")
+            val sexe  = jsonResponse.optString("sexe")
+            val adresse  = jsonResponse.optString("adresse")
+            val promotion  = jsonResponse.optString("promotion")
+            val annee_academique  = jsonResponse.optString("annee_academique")
+            // Création d'un texte formaté pour un affichage clair
+            val formattedText = """
+                Name : $name
+                Sexe : $sexe
+                Adresse  : $adresse
+                Promotion  : $promotion
+                Annee  : $annee_academique
+
+            """.trimIndent()
+
+            // Création d'un TextView pour afficher un texte personnalisé
+            val textView = TextView(context)
+            textView.text = formattedText
+            textView.setPadding(40, 20, 40, 20) // Espacement interne
+            textView.textSize = 16f // Taille du texte
+            // Toast.makeText(context,jsonResponse.toString(), Toast.LENGTH_LONG).show()
+            // Afficher le JSON dans un AlertDialog
+            // Affichage dans un AlertDialog
+            AlertDialog.Builder(context)
+                .setTitle("Information sur l' etudiant")
+                .setView(textView)
+                .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+                .show()
+            loadingDialog.dismiss()
+
+        },
+
             Response.ErrorListener {
                 val response = String(it.networkResponse?.data ?: ByteArray(0), Charset.forName(
                     HttpHeaderParser.parseCharset(it.networkResponse?.headers)))

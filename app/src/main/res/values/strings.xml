@@ -2,10 +2,10 @@
     <string name="app_name">Attendance System</string>
     <string name="title_home">Accueil</string>
     <string name="title_employees">Employés</string>
-    <string name="text_attendance">Enregistrez-vous ou scannez votre face pour signaler votre présence du jour.</string>
-    <string name="add_attendance">Ajouter une présence</string>
-    <string name="enroll_employee">Enroller un employé</string>
-    <string name="text_attendance_camera">Prenez une photo de l\'employée</string>
+    <string name="text_attendance">Enregistrez ou scannez la face pour enroller ou identifier un étudiant.</string>
+    <string name="add_attendance">Identifier un étudiant</string>
+    <string name="enroll_employee">Enroller un etudiant</string>
+    <string name="text_attendance_camera">Prenez une photo de l\'etudiant</string>
     <string name="take_picture">Capturer</string>
     <string name="text_attendance_camera_description">L\'image de votre face doit être claire pour une bonne expérience de nos algorithmes</string>
     <!-- TODO: Remove or change this placeholder text -->

@@ -34,6 +34,8 @@ class RecyclerViewAdapter(private val listener: RowClickListener, var context: C
         val model =  items[position]
 
         holder.name.text = model.name
+        holder.promotion.text = model.promotion
+        holder.annee_academique.text = model.annee_academique
         holder.employee.setOnClickListener {
             listener.onItemClickListener(model)
         }
@@ -45,6 +47,8 @@ class RecyclerViewAdapter(private val listener: RowClickListener, var context: C
     class MyViewHolder(view: View, val listener: RowClickListener, context: Context) : RecyclerView.ViewHolder(view) {
 
         var name: TextView = view.findViewById(R.id.name)
+        var promotion: TextView = view.findViewById(R.id.promotion)
+        var annee_academique: TextView = view.findViewById(R.id.annee_academique)
         var employee: LinearLayout = view.findViewById(R.id.employee)
 
     }
